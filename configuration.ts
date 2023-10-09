@@ -7,8 +7,8 @@ const configuration = {
     appId: "1:372160452180:web:321ce4ab4f3377dfe9bfc1",
     messagingSenderId: "G-SC35JN445S"
   },
-  emulatorHost: process.env.NEXT_PUBLIC_EMULATOR_HOST,
-  emulator: process.env.NEXT_PUBLIC_EMULATOR === "true"
+  emulatorHost: "",
+  emulator: ""
 };
 
 export default configuration;
