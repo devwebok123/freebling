@@ -8,7 +8,7 @@ const configuration = {
     messagingSenderId: "G-SC35JN445S"
   },
   emulatorHost: "",
-  emulator: ""
+  emulator: false
 };
 
 export default configuration;
