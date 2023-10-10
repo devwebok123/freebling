@@ -1,14 +1,14 @@
 const configuration = {
   firebase: {
-    apiKey: "AIzaSyAZ2_jhLdlDgLt7TmppxevnADafiP9wVXY",
-    authDomain: "test-firebase-key-2a0b2.firebaseapp.com",
-    projectId: "test-firebase-key-2a0b2",
-    storageBucket: "test-firebase-key-2a0b2.appspot.com",
-    appId: "1:372160452180:web:321ce4ab4f3377dfe9bfc1",
-    messagingSenderId: "G-SC35JN445S"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   },
-  emulatorHost: "",
-  emulator: false
+  emulatorHost: process.env.NEXT_PUBLIC_EMULATOR_HOST,
+  emulator: process.env.NEXT_PUBLIC_EMULATOR === 'true',
 };
 
 export default configuration;

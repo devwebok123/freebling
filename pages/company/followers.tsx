@@ -27,7 +27,7 @@ export default function followersPage() {
   const [userDatas, setUserDatas] = useState<any[]>([]);
   const [downloadData, setdownloadData] = useState<any[]>([]);
   const [selectedTab, setSelectedTab] = useState("followers");
-  const winners: unknown[] = [];
+  const winners : unknown[] = []
   const filename = "Followers Data";
   const getUserData = async () => {
     setLoading(true);
@@ -43,10 +43,10 @@ export default function followersPage() {
           });
     }
     if (selectedTab === "winners") {
-      const win = await getGiveaways();
-      winners.push(...win);
-      winners &&
-        winners?.length > 1 &&
+     const win = await getGiveaways();
+     winners.push(...win);
+     winners &&
+     winners?.length > 1 &&
         fetchUserData(winners)
           .then((response) => {
             setUserDatas(response);
@@ -55,6 +55,7 @@ export default function followersPage() {
           .catch((error) => {
             console.log(error);
           });
+
     }
     setLoading(false);
   };
@@ -66,8 +67,8 @@ export default function followersPage() {
     );
     const querySnapshot = await getDocs(q);
     const temp = querySnapshot.docs.map((doc) => doc.data());
-    // just give me winner from temp.winner
-    const winnersGiveaway = temp.filter((winner: any) => {
+     // just give me winner from temp.winner
+     const winnersGiveaway = temp.filter((winner: any) => {
       return winner?.winners?.length > 0;
     });
     const winnersObject = {
@@ -77,7 +78,7 @@ export default function followersPage() {
         } else {
           return [item.winners[0].userId];
         }
-      })
+      }),
     };
     // push winnerObjects.winner to winners array
     return winnersObject.winners;
@@ -91,18 +92,20 @@ export default function followersPage() {
       window.location.href = "/users/dashboard";
     }
     userData && getUserData();
-    if (userDatas) {
+    if(userDatas){
       const downloadedData = userDatas.map((userData) => {
         return {
           email: userData.email,
           name: userData.name,
           country: userData.country,
-          state: userData.state
+          state: userData.state,
         };
-      });
-      setdownloadData(downloadedData);
+      })
+      setdownloadData(downloadedData)
     }
   }, [userData, selectedTab, userDatas]);
+
+  
 
   return (
     <MainLayout>
