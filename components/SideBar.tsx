@@ -5,7 +5,7 @@ import {
   HomeIcon,
   PlusCircleIcon,
   GiftIcon,
-  AcademicCapIcon,
+  AcademicCapIcon
 } from "@heroicons/react/24/outline";
 import { useAuth } from "../context/authcontext";
 import { useRouter } from "next/router";
@@ -16,7 +16,7 @@ import { useTour } from "@reactour/tour";
 import {
   businessTutorial,
   customerTutorialWithGiveaway,
-  customerTutorialWithoutGiveaway,
+  customerTutorialWithoutGiveaway
 } from "./Tutorials/Tutorials";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../firebase";
@@ -68,37 +68,60 @@ export default function SideBar() {
         <ul className="w-full h-full space-y-2">
           <li className="group first-step">
             <Link href="/" className="SideNavLink">
-              <HomeIcon className="UtilityIcon sidenav-home" /> 
+              <HomeIcon className="UtilityIcon sidenav-home" />
               <span className="LinkTxt">Home</span>
             </Link>
           </li>
           <li className="group first-step">
             <Link href="/giveaways" className="SideNavLink">
-              <GiftIcon className="UtilityIcon sidenav-giveaways" /> 
+              <GiftIcon className="UtilityIcon sidenav-giveaways" />
               <span className="LinkTxt">Giveaways</span>
             </Link>
           </li>
           <li className="group first-step">
             <Link href="#" className="SideNavLink cursor-not-allowed">
-              <Image src="/assets/icons/icon-airdrops.svg" className="UtilityIcon sidenav-giveaways" alt="Airdrop icon" width={5} height={5} /> 
+              <Image
+                src="/assets/icons/icon-airdrops.svg"
+                className="UtilityIcon sidenav-giveaways"
+                alt="Airdrop icon"
+                width={5}
+                height={5}
+              />
               <span className="LinkTxt Disabled">Airdrops</span>
             </Link>
           </li>
           <li className="group first-step">
             <Link href="#" className="SideNavLink cursor-not-allowed">
-              <Image src="/assets/icons/icon-rewards.svg" className="UtilityIcon sidenav-giveaways" alt="Reward icon" width={5} height={5} /> 
+              <Image
+                src="/assets/icons/icon-rewards.svg"
+                className="UtilityIcon sidenav-giveaways"
+                alt="Reward icon"
+                width={5}
+                height={5}
+              />
               <span className="LinkTxt Disabled">Rewards</span>
             </Link>
           </li>
           <li className="group first-step">
             <Link href="#" className="SideNavLink cursor-not-allowed">
-              <Image src="/assets/icons/icon-cashout.svg" className="UtilityIcon sidenav-giveaways" alt="Cashout icon" width={5} height={5} /> 
+              <Image
+                src="/assets/icons/icon-cashout.svg"
+                className="UtilityIcon sidenav-giveaways"
+                alt="Cashout icon"
+                width={5}
+                height={5}
+              />
               <span className="LinkTxt Disabled">Cashout</span>
             </Link>
           </li>
 
           <li className="group first-step">
-            <a href="https://learn.freebling.io" target="_blank" className="SideNavLink">
+            <a
+              href="https://learn.freebling.io"
+              target="_blank"
+              className="SideNavLink"
+              rel="noreferrer"
+            >
               <AcademicCapIcon className="UtilityIcon sidenav-giveaways" />
               <span className="LinkTxt">Knowledge Base</span>
             </a>

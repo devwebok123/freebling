@@ -8,7 +8,7 @@ import Image from "next/image";
 import { Tab, TabList } from "react-tabs";
 import MainLayout from "../../components/Layouts/MainLayout";
 import fetchUserData from "../../utils/getUserData";
-//import CsvDownloader from "react-csv-downloader";
+import CsvDownloader from "react-csv-downloader";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
 
@@ -140,13 +140,12 @@ export default function followersPage() {
                   </Tab>
                 </TabList>
                 {/* CSV Downloand button from csv react */}
-                {/*
+
                 <CsvDownloader filename={filename} datas={downloadData}>
                   <button className="buttonTertiary w-full md:w-auto">
                     Download list as CSV
                   </button>
                 </CsvDownloader>
-                  */}
               </div>
 
               {/* followers table */}

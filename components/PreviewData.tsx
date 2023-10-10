@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +11,7 @@ import {
   getDocs,
   query,
   setDoc,
-  where,
+  where
 } from "firebase/firestore";
 import { db } from "../firebase";
 import toast from "react-hot-toast";
@@ -26,7 +27,7 @@ import {
   GiftIcon,
   InformationCircleIcon,
   ListBulletIcon,
-  TrophyIcon,
+  TrophyIcon
 } from "@heroicons/react/24/outline";
 
 const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
@@ -131,7 +132,7 @@ export default function PreviewData(props: any) {
         (tasksDoneByUser?.length / localData?.tasks?.length) * 100;
       console.log(percentage);
       setPercent(percentage + "%");
-      setDisabled(false)
+      setDisabled(false);
     } else setLoading(false);
   }, [userData?.uid, viewMode]);
 
@@ -188,7 +189,7 @@ export default function PreviewData(props: any) {
             userData?.userType === "user"
           )
             toast.error("You need to finish your profile to participate");
-            setDisabled(true)
+          setDisabled(true);
         } else setDisabled(false);
       }
     }
@@ -203,7 +204,7 @@ export default function PreviewData(props: any) {
     localData?.reqFullName,
     localData?.reqEmail,
     localData?.reqCrypto,
-    localData?.reqAddress,
+    localData?.reqAddress
   ]);
 
   function generateUID() {
@@ -220,7 +221,7 @@ export default function PreviewData(props: any) {
       user_uid: userData?.uid,
       uid: generateUID(),
       template: true,
-      draft: false,
+      draft: false
     };
 
     try {
@@ -240,7 +241,7 @@ export default function PreviewData(props: any) {
       user_uid: userData?.uid,
       uid: generateUID(),
       template: false,
-      draft: false,
+      draft: false
     };
 
     setLoading(true);
@@ -390,61 +391,56 @@ export default function PreviewData(props: any) {
 
               {/* right tasks */}
               <div className="bg-teal-500 py-2 px-3 rounded-sm w-full md:w-1/2">
-                
-                  <div className="w-full h-auto rounded-sm bg-teal-500 space-y-px">
-                    {
-                      localData?.tasks?.map((task: any, index: any) => {
-                        return (
-                          <TasksList
-                            key={index}
-                            data={task}
-                            giveawayId={id}
-                            entries={userEntries}
-                            tasksDone={doneTasks}
-                            disabled={disabled}
-                            updateLocalData={updateLocalData}
-                          />
-                        );
-                      })}
+                <div className="w-full h-auto rounded-sm bg-teal-500 space-y-px">
+                  {localData?.tasks?.map((task: any, index: any) => {
+                    return (
+                      <TasksList
+                        key={index}
+                        data={task}
+                        giveawayId={id}
+                        entries={userEntries}
+                        tasksDone={doneTasks}
+                        disabled={disabled}
+                        updateLocalData={updateLocalData}
+                      />
+                    );
+                  })}
 
-                    {viewMode && userData?.userType === "user" && (
-                      <div className="hidden mt-5">
-                        <h3 className="flex flex-row text-base font-Ubuntu-Regular justify-between">
-                          Tasks Completed{" "}
-                          <span className="text-teal-100 text-[20px]">
-                            {doneTasks?.length}/{localData?.tasks?.length || 0}
-                          </span>
-                        </h3>
-                        <div className="border-[2px] border-teal-900/20 relative h-[20px] w-full rounded-full p-1 mt-1">
-                          <div
-                            style={{ width: percentage }}
-                            className="rounded-full absolute top-0 left-0 flex h-full items-center justify-center text-xs font-Ubuntu-Regular text-white bg-gradient-to-r from-[#139BAD]/40 to-[#139BAD]"
-                          ></div>
-                        </div>
+                  {viewMode && userData?.userType === "user" && (
+                    <div className="hidden mt-5">
+                      <h3 className="flex flex-row text-base font-Ubuntu-Regular justify-between">
+                        Tasks Completed{" "}
+                        <span className="text-teal-100 text-[20px]">
+                          {doneTasks?.length}/{localData?.tasks?.length || 0}
+                        </span>
+                      </h3>
+                      <div className="border-[2px] border-teal-900/20 relative h-[20px] w-full rounded-full p-1 mt-1">
+                        <div
+                          style={{ width: percentage }}
+                          className="rounded-full absolute top-0 left-0 flex h-full items-center justify-center text-xs font-Ubuntu-Regular text-white bg-gradient-to-r from-[#139BAD]/40 to-[#139BAD]"
+                        ></div>
                       </div>
-                    )}
+                    </div>
+                  )}
 
-                    {/* BUTTONS */}
-                    {!viewMode && (
-                      <div className="mt-10 md:mt-[60px] lg:mt-auto lg:ml-auto px-1 py-3">
-                        <div className="flex flex-col-reverse gap-y-6 md:gap-y-0 md:gap-x-[34px] md:flex-row lg:gap-x-8 lg:justify-end">
-                          <button
-                            onClick={saveAsTemp}
-                            className="buttonPrimary"
-                          >
-                            Save as Template
-                          </button>
-                          <button
-                            onClick={submitCampaign}
-                            className="buttonPrimary"
-                          >
-                            Save
-                          </button>
-                        </div>
+                  {/* BUTTONS */}
+                  {!viewMode && (
+                    <div className="mt-10 md:mt-[60px] lg:mt-auto lg:ml-auto px-1 py-3">
+                      <div className="flex flex-col-reverse gap-y-6 md:gap-y-0 md:gap-x-[34px] md:flex-row lg:gap-x-8 lg:justify-end">
+                        <button onClick={saveAsTemp} className="buttonPrimary">
+                          Save as Template
+                        </button>
+                        <button
+                          onClick={submitCampaign}
+                          className="buttonPrimary"
+                        >
+                          Save
+                        </button>
                       </div>
-                    )}
-                  </div>
-                
+                    </div>
+                  )}
+                </div>
+
                 {/* {!user && (
                   <>
                     <div className="w-full h-auto md:w-1/3 rounded-sm p-5 mt-10 md:mt-0 bg-teal-500">
@@ -518,63 +514,67 @@ export default function PreviewData(props: any) {
               </h3>
             </div>
             <div className="flex flex-col rounded-sm w-full">
-  {/* Header Row */}
-  <div className="flex bg-teal-700 mb-3 rounded-sm">
-    <div className="p-2 font-bold text-center w-16 rounded-sm">
-      Count
-    </div>
-    <div className="flex-grow p-2 font-bold text-center rounded-sm">Username</div>
-    <div className="p-2 font-bold text-center w-16 rounded-sm">Entries</div>
-  </div>
+              {/* Header Row */}
+              <div className="flex bg-teal-700 mb-3 rounded-sm">
+                <div className="p-2 font-bold text-center w-16 rounded-sm">
+                  Count
+                </div>
+                <div className="flex-grow p-2 font-bold text-center rounded-sm">
+                  Username
+                </div>
+                <div className="p-2 font-bold text-center w-16 rounded-sm">
+                  Entries
+                </div>
+              </div>
 
-  {/* Data Rows */}
-  <div className="flex flex-col">
-    {/* map localData.participatedUsers here */}
-    {sortedArray?.slice(0, 10).map((user: any, index: any) => {
-      let backgroundColor = "";
-      if (index === 0) {
-        backgroundColor = "rgba(233, 115, 24, 1)";
-      }
-      if (index === 1) {
-        backgroundColor = "rgba(233, 115, 24, 0.75)";
-      } else if (index === 2) {
-        backgroundColor = "rgba(233, 115, 24, 0.5)";
-      }
-      return (
-        <div
-          style={
-            user.name === userData?.name
-              ? { backgroundColor: "#10C8DC" }
-              : { backgroundColor }
-          }
-          className="flex rounded-sm"
-          key={index}
-        >
-          <div className="p-2 text-center w-16 rounded-sm">
-            #{index + 1}
-          </div>
-          <div className="flex-grow p-2 text-center rounded-sm">{user.name}</div>
-          <div className="p-2 text-center w-16 rounded-sm">
-            {user.userEntries || 1}
-          </div>
-        </div>
-      );
-    })}
-    {userRank > 9 && (
-      <div className="flex bg-teal-300 rounded-sm">
-        <div className="p-2 text-center w-16 rounded-sm">
-          #{userRank + 1}
-        </div>
-        <div className="flex-grow p-2 text-center rounded-sm">
-          userData?.name (You)
-        </div>
-        <div className="p-2 text-center w-16 rounded-sm">-</div>
-      </div>
-    )}
-  </div>
-</div>
-
-
+              {/* Data Rows */}
+              <div className="flex flex-col">
+                {/* map localData.participatedUsers here */}
+                {sortedArray?.slice(0, 10).map((user: any, index: any) => {
+                  let backgroundColor = "";
+                  if (index === 0) {
+                    backgroundColor = "rgba(233, 115, 24, 1)";
+                  }
+                  if (index === 1) {
+                    backgroundColor = "rgba(233, 115, 24, 0.75)";
+                  } else if (index === 2) {
+                    backgroundColor = "rgba(233, 115, 24, 0.5)";
+                  }
+                  return (
+                    <div
+                      style={
+                        user.name === userData?.name
+                          ? { backgroundColor: "#10C8DC" }
+                          : { backgroundColor }
+                      }
+                      className="flex rounded-sm"
+                      key={index}
+                    >
+                      <div className="p-2 text-center w-16 rounded-sm">
+                        #{index + 1}
+                      </div>
+                      <div className="flex-grow p-2 text-center rounded-sm">
+                        {user.name}
+                      </div>
+                      <div className="p-2 text-center w-16 rounded-sm">
+                        {user.userEntries || 1}
+                      </div>
+                    </div>
+                  );
+                })}
+                {userRank > 9 && (
+                  <div className="flex bg-teal-300 rounded-sm">
+                    <div className="p-2 text-center w-16 rounded-sm">
+                      #{userRank + 1}
+                    </div>
+                    <div className="flex-grow p-2 text-center rounded-sm">
+                      userData?.name (You)
+                    </div>
+                    <div className="p-2 text-center w-16 rounded-sm">-</div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* POPUP */}
@@ -584,7 +584,7 @@ export default function PreviewData(props: any) {
             center
             classNames={{
               overlay: "popupTasksOverlay",
-              modal: "!w-full !p-6 !m-0 md:!max-w-[844px] !bg-transparent",
+              modal: "!w-full !p-6 !m-0 md:!max-w-[844px] !bg-transparent"
             }}
           >
             <div className="bg-[#101B1B] border-[1.5px] border-jade-100 rounded-md p-6 md:p-10">
